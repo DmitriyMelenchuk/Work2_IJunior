@@ -2,29 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyInstantiate : MonoBehaviour
+public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemy;
+    [SerializeField] private Enemy _template;
     [SerializeField] private Transform _spawnPoints;
 
     private Transform[] _points;
+    private Coroutine _spawnWithDelayJob;
 
     private void Start()
     {
         InitializePoints();
 
-        StartCoroutine(CreateEnemys());
+        if (_spawnWithDelayJob != null)
+        {
+            StopCoroutine(SpawnWithDelay());
+        }
+
+        _spawnWithDelayJob = StartCoroutine(SpawnWithDelay());
     }
 
-    private IEnumerator CreateEnemys()
+    private IEnumerator SpawnWithDelay()
     {
         var waitTwoSeconds = new WaitForSeconds(2);
+        
 
         for (int i = 0; i < _points.Length; i++)
         {
             yield return waitTwoSeconds;
 
-            Instantiate(_enemy, _points[i].position, Quaternion.identity); 
+            var spawnedEnemy = Instantiate(_template, _points[i].position, Quaternion.identity);
         }
     }
 

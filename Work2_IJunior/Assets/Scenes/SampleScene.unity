@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474201c26d7a46e49bb66a6c920f342e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 5551349952493004351, guid: c19ddb689a83c8147b8164ee743e1756, type: 3}
+  _template: {fileID: 6089402667531511484, guid: c19ddb689a83c8147b8164ee743e1756, type: 3}
   _spawnPoints: {fileID: 561287274}
 --- !u!1 &705507993
 GameObject:
